@@ -1,0 +1,53 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Клубы{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'clubs/css/teams.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Клубы</h1>
+    {% if perms.clubs.add_teams %}
+    <a href="{% url 'clubs_add_page' %}" class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить команду</a>
+    {% endif %}
+
+    <form method="get" class="form-col">
+        {{ form }}
+        <button type="submit" class="btn btn-success">Применить фильтр</button>
+    </form>
+
+    {% if user.is_authenticated %}
+    <div style="text-align: left; margin-bottom: 1em;">
+        <a href="{% url 'clubs_favorite' %}">
+            <button class="btn btn-danger"><i class="fas fa-heart"></i> Мои любимые клубы</button>
+        </a>
+    </div>
+    {% endif %}
+    {% for team in list_objects %}
+    <a href="{{ team.get_absolute_url }}" class="link_team">
+        <div class="card" style="background-color: rgba(255, 255, 255, 0);">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if team.image %}
+                    <img src="{{ team.image.url }}" alt="Изображение" style="width: 200px; max-height: 180px">
+                    {% else %}
+                    <img src="{% static 'placeholder.png' %}" alt="Изображение" style="width: 200px; max-height: 180px">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body-grid">
+                        <h3 class="card-title">{{team.short_name}}</h3>
+                        <p><b>Тренер: </b>{{team.coach}}</p>
+                        <p><b>Город: </b>{{team.city}}</p>
+                        <p><b>Стадион: </b>{{team.stadium}}</p>
+                        <p><b>Страна: </b>{{team.country}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

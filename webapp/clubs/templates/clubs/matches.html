@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Матчи{% endblock %}
+{% block links%}
+<link rel="stylesheet" href="{% static 'clubs/css/liga.css' %}">
+<link rel="stylesheet" href="{% static 'clubs/css/matches.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Матчи</h1>
+    {{formLigaFilter}}
+    <div class="container">
+        {% for league in leagues %}
+        <details class="liga-details">
+            <summary>
+                <span>{{league.name}} ({{league.country}})</span>
+            </summary>
+            <ul>
+                {% if league.get_matches.count == 0 %}
+                <li>
+                    <p class="medium-header">Нет матчей</p>
+                </li>
+                {% endif %}
+                {% for match in league.get_matches %}
+                <li>
+                    {% include 'clubs/fragments/match_card.html' with match=match %}
+                </li>
+                {% endfor %}
+            </ul>
+        </details>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

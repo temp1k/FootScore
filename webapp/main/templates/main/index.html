@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="features">
+        {% include 'main/messages.html' %}
+        {% if user.is_authenticated %}
+            <h3 style="text-align: left">Здравствуйте, {{user.username}}</h3>
+        {% endif %}
+        <h1 style="margin-top: 50px">{{ title }}</h1>
+        <p class="description">{{description}}</p>
+        <button class="btn btn-warning">На страницу про нас</button>
+    </div>
+{% endblock %}

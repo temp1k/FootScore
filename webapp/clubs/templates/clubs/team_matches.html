@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Команда {{team.short_name}}{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'clubs/css/team_matches.css' %}">
+<div class="features">
+    {% include 'clubs/fragments/team_page.html' with team=team %}
+    <div>
+        {% if team.get_matches.count == 0 %}
+        <h3 style="margin-top: 50px">У клуба еще не было матчей</h3>
+        {% else %}
+        {% for match in team.get_matches %}
+        {% include 'clubs/fragments/match_card.html' with match=match %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% endblock %}
+</div>

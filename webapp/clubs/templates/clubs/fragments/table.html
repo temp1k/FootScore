@@ -1,0 +1,35 @@
+{% include 'main/fragments/links_css.html' %}
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Команда</th>
+        <th scope="col">Количество игр</th>
+        <th scope="col">Побед</th>
+        <th scope="col">Ничей</th>
+        <th scope="col">Поражений</th>
+        <th scope="col">Очков</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for table_team in table %}
+    <tr class="{% if table_team.team == team %} table-active {%endif%}">
+        <th scope="row">{{forloop.counter}}</th>
+        <td>
+            <a class="link-no-style" href="{% url 'club_page_players' table_team.team.id %}">{{table_team.team.full_name}}</a>
+        </td>
+        <td>{{ table_team.get_number_matches }}</td>
+        <td>{{table_team.number_win }}</td>
+        <td>{{table_team.number_draw }}</td>
+        <td>{{table_team.number_loose }}</td>
+        <td>{{table_team.points}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if table.count == 0 %}
+<div class="h-25 d-flex justify-content-center align-items-center">
+    <h3>Таблица пока пустая :(</h3>
+</div>
+
+{% endif %}

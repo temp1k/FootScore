@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Команда {{team.short_name}}{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="features">
+    {% include 'clubs/fragments/team_page.html' with team=team is_favorite=is_favorite %}
+    <div>
+        {% if perms.clubs.add_player %}
+        <div class="text-start mt-2">
+            <a class="btn btn-secondary" href="{% url 'add_player_with_team' team.id %}" target="_blank">Добавить игрока</a>
+        </div>
+        {% endif %}
+        {% if team.get_players.count == 0 %}
+        <h3 style="margin-top: 50px">У команды еще нет игроков</h3>
+        {% endif %}
+        {% for player in team.get_players %}
+        <div class="card mt-2" style="max-width: 490px;">
+            <div class="row g-0 d-flex align-items-center h-100">
+                <div class="col-md-3 h-100">
+                    {% if player.image %}
+                    <img src="{{ player.image.url }}" style="max-height: 170px" class="card-img rounded-start"
+                         alt="Изображение игрока">
+                    {% else %}
+                    <img src="{% static 'placeholder.png' %}" style="max-height: 170px" class="card-img rounded-start"
+                         alt="Изображение игрока">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body position-relative">
+                        <h5 class="card-title">{{player.get_full_name}}</h5>
+                        <div style="text-align: left; margin-left: 10%">
+                            <p><b>Позиция:</b> {{player.position}}</p>
+                            <p class="card-text"><b>Возраст:</b> {{player.age}}</p>
+                            <p class="card-text"><b>Страна:</b> {{player.country}}</p>
+                        </div>
+                        <div>
+                            <a href="/admin/clubs/players/{{player.id}}/change" style="position: absolute; right: 0; bottom: 1em">Изменить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</div>

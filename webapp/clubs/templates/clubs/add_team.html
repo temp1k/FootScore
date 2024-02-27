@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Создание клуба{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="features">
+    <h1>Создание клуба</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+    <a href="{% url 'clubs_page'%}" class="btn btn-warning">Вернуться</a>
+</div>
+{% endblock %}

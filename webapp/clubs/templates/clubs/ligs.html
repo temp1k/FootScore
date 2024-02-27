@@ -1,0 +1,35 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Лиги{% endblock %}
+{% block links%}
+<link rel="stylesheet" href="{% static 'clubs/css/ligs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="features">
+
+    {% include 'main/messages.html' %}
+
+    <h1>Лиги</h1>
+    {% if perms.clubs.add_ligs %}
+    <a href="{% url 'ligs_add_page' %}" class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить лигу</a>
+    {% endif %}
+
+    <form class="form-col" method="get">
+        {{ form }}
+        <button class="btn btn-success" type="submit">Применить фильтр</button>
+    </form>
+    <div class="grid">
+        {% for liga in ligs %}
+        <a class="item-link" href="{{liga.get_absolute_url}}">
+            <div class="grid-item">
+                <h3 class="item-title">{{liga.name}}</h3>
+                <div class="item-desc">
+                    <p><b>Страна: </b>{{liga.country}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

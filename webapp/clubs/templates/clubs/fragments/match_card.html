@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'main/fragments/links_css.html' %}
+    <link rel="stylesheet" href="{% static 'clubs/css/team_matches.css' %}">
+</head>
+<body>
+<div class="card card-match text-center mt-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-2 text-center border-right">
+                <div class="row d-flex justify-content-center">{{match.getTime}}</div>
+                <div class="row d-flex justify-content-center">{{match.getDate}}</div>
+            </div>
+            <div class="col-10 d-flex align-items-center">
+                <div class="row w-100">
+                    <div class="col-5 d-flex align-items-center justify-content-between">
+                        <a href="{% url 'club_page_players' match.host_team.id %}">
+                            <span style="margin-left: 3px">{{match.host_team.full_name}}</span>
+                        </a>
+                        {% if match.host_team.image %}
+                        <img src="{{ match.host_team.image.url }}" height="50px" width="50px" class="rounded"
+                             alt="Изображение команды">
+                        {% else %}
+                        <img src="{% static 'placeholder.png' %}" width="50px" height="50px" class="rounded-start"
+                             alt="Изображение команды">
+                        {% endif %}
+                    </div>
+                    <div class="col-2 d-flex align-items-center justify-content-center">
+                        <b>{{match.goals_first_team}} - {{match.goals_second_team}}</b>
+                    </div>
+                    <div class="col-5 d-flex align-items-center justify-content-between">
+                        {% if match.guest_team.image %}
+                        <img src="{{ match.guest_team.image.url }}" height="50px" width="50px" class="rounded"
+                             alt="Изображение команды">
+                        {% else %}
+                        <img src="{% static 'placeholder.png' %}" height="50px" width="50px"
+                             class="rounded-start"
+                             alt="Изображение команды">
+                        {% endif %}
+                        <a href="{% url 'club_page_players' match.guest_team.id %}">
+                            <span style="margin-left: 3px">{{match.guest_team.full_name}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'clubs/css/team_page.css' %}">
+<div class="card mb-3" style="max-width: 80%;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if team.image %}
+            <img src="{{ team.image.url }}" class="img-fluid rounded-start" alt="Изображение">
+            {% else %}
+            <img src="{% static 'placeholder.png' %}" class="img-fluid rounded-start" alt="Изображение">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body position-relative">
+<!--                <a href="#" class="favorite"><i class="fas fa-heart icon-large"></i></a>-->
+                <a href="{% url 'switch_favorite_team' team.id %}" class="favorite">
+                    {% if is_favorite %}
+                    <i class="fas fa-heart icon-large"></i>
+                    {% else %}
+                    <i class="far fa-heart icon-large"></i>
+                    {% endif %}
+                </a>
+                <h3 class="card-title">{{team.full_name}}</h3>
+                <p class="card-text"><b>Тренер:</b> {{team.coach}}</p>
+                <p class="card-text"><b>Стадион:</b> {{team.stadium}}</p>
+                <p class="card-text"><b>Страна:</b> {{team.country}}</p>
+                <p class="card-text"><b>Город:</b> {{team.city}}</p>
+                {% if perms.clubs.change_teams %}
+                <div class="card-footer">
+                    <a href="/admin/clubs/teams/{{team.id}}/change" target="_blank">Изменить</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs">
+    {% for item in menu %}
+    <li class="nav-item">
+        {% if route_name == item.url_name %}
+        <a class="nav-link active" aria-current="page" href="{% url item.url_name team.id%}">{{item.title}}</a>
+        {% else %}
+        <a class="nav-link" style="color: var(--default-font-color)" aria-current="page"
+           href="{% url item.url_name team.id%}">{{item.title}}</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

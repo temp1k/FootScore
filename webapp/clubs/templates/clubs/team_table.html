@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Команда {{team.short_name}}{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="features">
+    {% include 'clubs/fragments/team_page.html' with team=team %}
+    <div class="w-75 m-auto">
+        {% if team.get_table.count == 0 %}
+        <h3 style="margin-top: 50px">Команда не участвует ни в одной лиге</h3>
+        {% else %}
+        <h4 class="text-start">Сезон: {{team.get_table.first.season}}</h4>
+        {% include 'clubs/fragments/table.html' with table=team.get_table %}
+        {% endif %}
+    </div>
+    {% endblock %}
+</div>

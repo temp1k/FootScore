@@ -1,0 +1,39 @@
+{% if messages %}
+<style>
+    .success, .info, .warning, .error {
+        display: block;
+        position: relative;
+        width: 100%;
+        top: -1rem;
+        text-align: center;
+        line-height: 2rem;
+        list-style: none;
+        padding: 0.5rem 0;
+    }
+    .success {
+        background: #35a36e;
+    }
+    .info {
+        background: #3d6cbe;
+    }
+    .warning {
+        background: #eacc47;
+    }
+    .error {
+        background: #c23030;
+    }
+</style>
+<ul>
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <li class="success">{{message}}</li>
+        {% elif message.tags == 'warning' %}
+            <li class="warning">{{message}}</li>
+        {% elif message.tags == 'info' %}
+            <li class="info">{{message}}</li>
+        {% elif message.tags == 'error' %}
+            <li class="error">{{message}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}

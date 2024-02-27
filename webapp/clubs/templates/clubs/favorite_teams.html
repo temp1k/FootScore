@@ -1,0 +1,37 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Клубы{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'clubs/css/teams.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h2>Ваши любимые клубы</h2>
+    {% for favorite in favorites %}
+    <a href="{{ favorite.team.get_absolute_url }}" class="link_team">
+        <div class="card" style="background-color: rgba(255, 255, 255, 0);">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
+                    {% if favorite.team.image %}
+                    <img src="{{ favorite.team.image.url }}" alt="Изображение" style="width: 200px; max-height: 180px">
+                    {% else %}
+                    <img src="{% static 'placeholder.png' %}" alt="Изображение" style="width: 200px; max-height: 180px">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{favorite.team.short_name}}</h3>
+                        <p><b>Тренер: </b>{{favorite.team.coach}}</p>
+                        <p><b>Город: </b>{{favorite.team.city}}</p>
+                        <p><b>Стадион: </b>{{favorite.team.stadium}}</p>
+                        <p><b>Страна: </b>{{favorite.team.country}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}}

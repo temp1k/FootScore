@@ -1,0 +1,66 @@
+body {
+    height: 100vh;
+}
+
+.container_auth {
+    height: 100%;
+    max-width: 960px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_auth {
+    padding: 1em 4em 2em;
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 1em;
+    min-width: 50%;
+    background-color: var(--second-color);
+}
+
+.form-group {
+    margin-bottom: 6px;
+}
+
+.card_auth form {
+    margin: 0;
+    width: auto;
+}
+
+.card_auth form input {
+    width: 100%;
+}
+
+.center-form {
+    align-self: center;
+    display: flex;
+    margin: auto;
+}
+
+.title-auth {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.message {
+    display: block;
+    padding: 0.5rem 0;
+    background-color: var(--message-font-color);
+    text-align: center;
+}
+
+.error {
+    color: var(--error-color);
+    padding: 0;
+    margin-left: 0;
+    text-align: start;
+}
+
+.error ul {
+    list-style: none;
+    padding: 0;
+}
+

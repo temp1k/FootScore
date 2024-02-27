@@ -1,0 +1,35 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+    align-items: center;
+}
+
+.item-link {
+    text-decoration: none;
+    color: var(--default-font-color)
+}
+
+.item-link:hover {
+    color: var(--default-font-color)
+}
+
+.grid-item {
+    padding: 1em 1.5em;
+    border: 2px var(--second-color) solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.grid-item:hover {
+    border-color: var(--active-color);
+}
+
+.item-title {
+    text-align: center;
+}
+
+.item-desc {
+    text-align: start;
+}

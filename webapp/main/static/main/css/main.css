@@ -1,0 +1,128 @@
+:root {
+    --main-color: #1B2A30;
+    --second-color: #181818;
+    --default-font-color: white;
+    --message-font-color: #e3932b;
+    --error-color: #f12929;
+    --active-color: white;
+}
+
+
+body {
+    background: var(--main-color);
+    color: var(--default-font-color)
+}
+
+.no__margin {
+    margin: 0;
+}
+
+aside {
+    float: left;
+    background: var(--second-color);
+    width: 20%;
+    padding: 2.5% 2.5% 2.5% 2%;
+    height: 100vh;
+    color: var(--default-font-color);
+    border-right: 5px solid #4d4d4d;
+    position: fixed;
+}
+
+input {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 3px 6px;
+}
+
+aside img {
+    width: 60px;
+    float: left;
+}
+aside .logo {
+    font-size: 28px;
+    margin-left: 5px;
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+}
+aside a:hover {
+    color: var(--default-font-color)
+}
+aside h3 {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+aside ul {
+    list-style: none;
+}
+aside ul li {
+    color: var(--default-font-color);
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+aside ul a {
+    text-decoration: none;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #eb5959;
+    transform: scale(1.05);
+}
+
+main .features{
+    float: left;
+    color: white;
+    margin-left: 20%;
+    text-align: center;
+    min-height: 100vh;
+    width: 75%;
+    padding: 10px 15px;
+}
+
+main .features h1 {font-size: 50px; }
+main .features p {
+    max-width: 800px;
+    word-wrap: break-word;
+    margin: 20px auto;
+}
+main .features .description {
+    max-width: 600px;
+}
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 600px;
+    margin: 15px 20%;
+    text-align: left;
+}
+
+.btn-info {
+    color: var(--default-font-color);
+    padding: 5px 8px;
+}
+
+.link-no-style {
+    color: var(--default-font-color);
+    text-decoration: none;
+}
+
+.form-col {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    gap: 5px;
+}
+.form-col div {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.icon-large {
+    font-size: 24px;
+}

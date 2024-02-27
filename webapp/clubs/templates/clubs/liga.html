@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Лиги{% endblock %}
+{% block links%}
+<link rel="stylesheet" href="{% static 'clubs/css/liga.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <div class="container position-relative">
+        <h1>{{liga.name}}</h1>
+        <a href="/admin/clubs/ligs/{{liga.id}}/change" target="_blank" style="position: absolute; right: 0; top: 1em;"
+           class="btn btn-secondary">Изменить</a>
+        <p>Страна: <b>{{liga.country}}</b></p>
+        <form id="season_form" method="GET" class="text-start">
+            <div class="form-group d-inline-block w-50">
+                <label for="id_season">Сезон: </label>
+                <div class="row w-75 align-items-center">
+                    <div class="col-md-5">
+                        <select name="id_season" id="id_season" class="form-select"
+                                onchange="document.getElementById('season_form').submit()">
+                            {% for season in seasons %}
+                            <option value="{{season.id}}" {% if selectedSeasonId == season.id %} selected {%endif%}>
+                                {{season}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if perms.clubs_add_season %}
+                    <div class="col-md-7">
+                        <a href="{% url 'add_season' %}" target="_blank">Добавить сезон</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+        <h3 style="text-align: start">Таблица:</h3>
+        {% if perms.clubs_add_teamstandings %}
+        <div class="text-start mb-2">
+            <a href="{% url 'add_stand_with_season_and_liga' selectedSeasonId liga.id %}" target="_blank"
+               class="btn btn-secondary">Добавить позицию</a>
+        </div>
+        {% endif %}
+        {% include 'clubs/fragments/table.html' with table=table %}
+    </div>
+</div>
+{% endblock %}

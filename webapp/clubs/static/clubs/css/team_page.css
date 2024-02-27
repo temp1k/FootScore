@@ -1,0 +1,26 @@
+.card {
+    color: var(--main-color);
+    margin: auto;
+}
+
+.nav-tabs {
+    justify-content: space-around;
+}
+
+.nav-link {
+    color: var(--default-font-color);
+}
+
+.nav-link:hover {
+    color: var(--default-font-color);
+}
+
+.favorite {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+.favorite i {
+    color: red;
+}

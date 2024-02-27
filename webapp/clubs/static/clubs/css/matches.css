@@ -1,0 +1,20 @@
+.liga-details {
+    text-align: start;
+    margin-bottom: 1em;
+}
+.liga-details summary {
+    font-size: 24px;
+    height: 2em;
+    padding: .2em .5em 0;
+    display: list-item;
+    align-items: center;
+    background-color: var(--second-color);
+}
+.liga-details ul {
+    list-style: none;
+}
+
+.medium-header {
+    font-size: 18px;
+    font-weight: bold;
+}

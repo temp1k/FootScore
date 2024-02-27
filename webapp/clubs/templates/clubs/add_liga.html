@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Создание лиги{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="features">
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h1>Создание лиги</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+    <a href="{% url 'ligs_page'%}" class="btn btn-warning">Вернуться</a>
+</div>
+{% endblock %}

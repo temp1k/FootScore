@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} </title>
+    {% include 'main/fragments/links_css.html' %}
+    {% block links %}{% endblock %}
+<body>
+<aside>
+    <a href="{% url 'home' %}" class="link-no-style">
+        <div class="d-flex align-items-end">
+        <img src="{% static 'main/img/logo-white.png' %}" alt="Логотип">
+        <span class="logo">FootScore</span>
+    </div>
+    </a>
+    <h3>Навигация</h3>
+    <ul>
+        <a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Главная</li></a>
+        <a href="{% url 'clubs_page' %}"><li><i class="fas fa-futbol"></i> Клубы</li></a>
+        <a href="{% url 'ligs_page' %}"><li><i class="fas fa-file-alt"></i> Лиги</li></a>
+        <a href="#"><li><i class="fas fa-users"></i> Игроки</li></a>
+        <a href="{% url 'news_home' %}"><li><i class="fas fa-newspaper"></i> Новости</li></a>
+        <a href="{% url 'matches_page' %}"><li><i class="fas fa-arrow-alt-circle-down"></i> Матчи</li></a>
+        {% if perms.news.add_articles %}
+        <a href="{% url 'add_new' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить новость</button></li></a>
+        {% endif %}
+        <br>
+        {% if user.is_anonymous %}
+        <a href="{% url 'login_user' %}"><li><i class="fas fa-door-open"></i> Войти</li></a>
+        <a href="{% url 'reg_user' %}"><li><i class="fas fa-paper-plane"></i> Зарегистрироваться</li></a>
+        {% else %}
+        <a href="{% url 'logout_user' %}"><li><i class="fas fa-door-closed"></i> Выйти</li></a>
+        {% endif %}
+        {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}" target="_blank"><li><i class="fas fa-user-tie"></i> Админ панель</li></a>
+        {% endif %}
+    </ul>
+</aside>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>
